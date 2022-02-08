@@ -12,6 +12,26 @@ module.exports = (webpackConfigEnv, argv) => {
     disableHtmlGeneration: true,
   });
 
+   const shared = singleSpaDefaults({
+    orgName: "frwk",
+    projectName: "quick-wait-shared",
+    webpackConfigEnv,
+    argv,
+  });
+
+  defaultConfig;
+  Object.assign(defaultConfig, {
+    entry: {
+      "frwk-root-config": defaultConfig.entry,
+      "frwk-quick-wait-shared": shared.entry,
+    },
+    output: {
+      ...defaultConfig.output,
+      filename: "[name].js",
+      path: __dirname + "/dist",
+    },
+  });
+
   return merge(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
     plugins: [

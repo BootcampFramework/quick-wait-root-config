@@ -3,6 +3,9 @@
 
 <head>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -13,14 +16,21 @@
     function getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        x.innerHTML = "O seu navegador não suporta Geolocalização.";
       }
-      else { x.innerHTML = "O seu navegador não suporta Geolocalização."; }
     }
     function showPosition(position) {
-      localStorage.setItem('coordenada', JSON.stringify({ lat: position.coords.latitude, lon: position.coords.longitude }))
+      localStorage.setItem(
+        "coordenada",
+        JSON.stringify({
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        })
+      );
     }
     getLocation();
-    console.log(localStorage)
+    console.log(localStorage);
   </script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -38,7 +48,7 @@
     Learn more about CSP policies at https://content-security-policy.com/#directive
   -->
   <meta http-equiv="Content-Security-Policy"
-    content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';" />
+    content="default-src 'self' https: localhost:* data:; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';" />
   <meta name="importmap-type" content="systemjs-importmap" />
   <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
   <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
@@ -55,7 +65,8 @@
         "imports": {
           "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
           "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
-          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js"
+          "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js",
+          "@frwk-shared":"//localhost:9000/frwk-quick-wait-shared.js"
         }
       }
     </script>
@@ -73,6 +84,8 @@
           "@frwk/frwkMap": "//localhost:8500/frwk-quick-wait-map.js",
           "@frwk/frwkInfo": "//localhost:4200/frwk-info.js",
           "@frwk/profile": "//localhost:4200/main.js",
+         
+          "@frwk/frwk-hospital-list": "//localhost:4200/frwk-hospital-list.js",
           "@frwk/angularMap": "//localhost:4201/main.js",
           "@frwk/hospital": "//localhost:8080/js/app.js",
           "@frwk/utils": "//localhost:8501/frwk-quick-wait-utils.js"
@@ -81,20 +94,33 @@
     </script>
     <% } %>
 
-      <!--
+      <!-- Angular parcels -->
+      <% if (isLocal) { %>
+        <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@frwk/frwk-shared-side-nav": "//localhost:4200/frwk-shared-side-nav.js",
+          "@frwk/frwk-side-nav": "//localhost:4200/frwk-side-nav.js",
+          "@frwk/frwk-hospital-list": "//localhost:4200/frwk-hospital-list.js"
+        }
+      }
+    </script>
+        <% } %>
+
+          <!--
     If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
     Learn more about why at https://single-spa.js.org/docs/ecosystem-angular/#zonejs
   -->
-      <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script>
 
-      <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
-      <% if (isLocal) { %>
-        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
-        <% } else { %>
-          <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
-          <% } %>
+          <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+          <% if (isLocal) { %>
+            <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+            <% } else { %>
+              <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
+              <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+              <% } %>
 </head>
 
 <body style="height: 100%;">

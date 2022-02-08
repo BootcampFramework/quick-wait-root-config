@@ -1,10 +1,10 @@
-import { registerApplication, start } from "single-spa";
 import {
   constructApplications,
   constructRoutes,
   constructLayoutEngine,
 } from "single-spa-layout";
 import microfrontendLayout from "./microfrontend-layout.html";
+import * as singleSpa from "single-spa";
 
 const routes = constructRoutes(microfrontendLayout);
 const applications = constructApplications({
@@ -16,8 +16,8 @@ const applications = constructApplications({
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
-applications.forEach(registerApplication);
+applications.forEach(singleSpa.registerApplication);
 layoutEngine.activate();
-start({
+singleSpa.start({
   urlRerouteOnly: true,
 });
