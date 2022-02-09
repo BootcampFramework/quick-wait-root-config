@@ -59,3 +59,11 @@ const actions = {
 };
 
 export { storeFactory, actions, state };
+
+export function emitEvent(name, data) {
+  window.dispatchEvent(new CustomEvent(name, { detail: data }));
+}
+
+export function listenEvent(name, cb) {
+  window.addEventListener(name, cb);
+}
