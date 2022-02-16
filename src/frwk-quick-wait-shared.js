@@ -25,25 +25,12 @@ function storeFactory(initialState) {
   };
 }
 
-const initialState = {
-  origin: {
-    lat: -0,
-    long: -0,
-  },
-  destiny: {
-    lat: 0,
-    long: 0,
-  },
-};
+const initialState = {};
 
 const { state$, updateState, getCurrentState } = storeFactory(initialState);
 
-const setOrigin = (origin) => {
-  updateState(({ state }) => ({ origin: origin }));
-};
-
-const setDestiny = (destiny) => {
-  updateState(({ state }) => ({ origin: destiny }));
+const setHospitalList = (hospitalList) => {
+  updateState(({ state }) => hospitalList);
 };
 
 const resetState = () => {
@@ -53,8 +40,7 @@ const resetState = () => {
 const state = state$.asObservable();
 
 const actions = {
-  setOrigin,
-  setDestiny,
+  setHospitalList,
   resetState,
 };
 
