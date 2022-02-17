@@ -37,6 +37,8 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@sentry/browser": "^6.17.8",
+    "@sentry/tracing": "^6.17.8",
     "@types/jest": "^27.0.1",
     "@types/systemjs": "^6.1.1",
     "single-spa": "^5.9.3",
