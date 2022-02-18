@@ -12,7 +12,7 @@ module.exports = (webpackConfigEnv, argv) => {
     disableHtmlGeneration: true,
   });
 
-   const shared = singleSpaDefaults({
+  const shared = singleSpaDefaults({
     orgName: "frwk",
     projectName: "quick-wait-shared",
     webpackConfigEnv,
