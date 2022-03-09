@@ -114,6 +114,24 @@
         }
       }
     </script>
+    <% } else { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@frwk/root-config": "https://quickwait.herokuapp.com/frwk-root-config.js",
+          "@frwk/patient": "https://rocky-oasis-35077.herokuapp.com/frwk-quick-wait-react.js",
+          "@frwk/frwkMap": "https://rocky-oasis-35077.herokuapp.com/frwk-quick-wait-map.js",
+          "@frwk-quick-wait-add-view-reminder": "https://rocky-oasis-35077.herokuapp.com/frwk-quick-wait-add-view-reminder.js",
+          "@frwk/frwkInfo": "//localhost:4200/frwk-info.js",
+          "@frwk/profile": "//localhost:4200/main.js",
+
+          "@frwk/frwk-hospital-list": "//localhost:4200/frwk-hospital-list.js",
+          "@frwk/angularMap": "//localhost:4201/main.js",
+          "@frwk/hospital": "//localhost:8080/js/app.js",
+          "@frwk/utils": "//localhost:8501/frwk-quick-wait-utils.js"
+        }
+      }
+    </script>
     <% } %>
 
     <!-- Angular parcels -->
@@ -155,7 +173,7 @@
       dev-libs
     ></import-map-overrides-full>
     <!-- Sentry.io -->
-    <!-- <script>
+    <script>
       Sentry.onLoad(() => {
         console.log(Sentry);
         Sentry.init({
@@ -165,6 +183,6 @@
           tracesSampleRate: 0.5,
         });
       });
-    </script> -->
+    </script>
   </body>
 </html>
