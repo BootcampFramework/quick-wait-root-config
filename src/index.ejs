@@ -87,6 +87,25 @@
         }
       }
     </script>
+    <!-- Project Shared Modules -->
+    <% if (isLocal) { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@frwk-shared": "//localhost:9000/frwk-quick-wait-shared.js"
+        }
+      }
+    </script>
+    <% } else { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@frwk-shared": "https://quickwait.herokuapp.com/frwk-quick-wait-shared.js"
+        }
+      }
+    </script>
+    <% } %>
+
     <link
       rel="preload"
       href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js"
@@ -96,6 +115,7 @@
     <!-- Add your organization's prod import map URL to this script's src  -->
     <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
+    <!-- React parcels -->
     <% if (isLocal) { %>
     <script type="systemjs-importmap">
       {
@@ -105,10 +125,7 @@
           "@frwk/frwkMap": "//localhost:8500/frwk-quick-wait-map.js",
           "@frwk-quick-wait-add-view-reminder": "//localhost:8500/frwk-quick-wait-add-view-reminder.js",
           "@frwk/frwkInfo": "//localhost:4200/frwk-info.js",
-          "@frwk/profile": "//localhost:4200/main.js",
 
-          "@frwk/frwk-hospital-list": "//localhost:4200/frwk-hospital-list.js",
-          "@frwk/angularMap": "//localhost:4201/main.js",
           "@frwk/hospital": "//localhost:8080/js/app.js",
           "@frwk/utils": "//localhost:8501/frwk-quick-wait-utils.js"
         }
@@ -123,10 +140,7 @@
           "@frwk/frwkMap": "https://rocky-oasis-35077.herokuapp.com/frwk-quick-wait-map.js",
           "@frwk-quick-wait-add-view-reminder": "https://rocky-oasis-35077.herokuapp.com/frwk-quick-wait-add-view-reminder.js",
           "@frwk/frwkInfo": "//localhost:4200/frwk-info.js",
-          "@frwk/profile": "//localhost:4200/main.js",
 
-          "@frwk/frwk-hospital-list": "//localhost:4200/frwk-hospital-list.js",
-          "@frwk/angularMap": "//localhost:4201/main.js",
           "@frwk/hospital": "//localhost:8080/js/app.js",
           "@frwk/utils": "//localhost:8501/frwk-quick-wait-utils.js"
         }
@@ -141,7 +155,19 @@
         "imports": {
           "@frwk/frwk-shared-side-nav": "//localhost:4200/frwk-shared-side-nav.js",
           "@frwk/frwk-side-nav": "//localhost:4200/frwk-side-nav.js",
-          "@frwk/frwk-hospital-list": "//localhost:4200/frwk-hospital-list.js"
+          "@frwk/frwk-hospital-list": "//localhost:4200/frwk-hospital-list.js",
+          "@frwk/profile": "//localhost:4200/main.js"
+        }
+      }
+    </script>
+    <% } else { %>
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@frwk/frwk-shared-side-nav": "https://quickwait-angular.herokuapp.com/frwk-shared-side-nav.js",
+          "@frwk/frwk-side-nav": "https://quickwait-angular.herokuapp.com/frwk-side-nav.js",
+          "@frwk/frwk-hospital-list": "https://quickwait-angular.herokuapp.com/frwk-hospital-list.js",
+          "@frwk/profile": "https://quickwait-angular.herokuapp.com/main.js"
         }
       }
     </script>
