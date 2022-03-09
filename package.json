@@ -47,5 +47,9 @@
     "single-spa-layout": "^1.6.0",
     "express": "^4.17.3",
     "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
   }
 }
