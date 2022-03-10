@@ -63,7 +63,7 @@
     Learn more about CSP policies at https://content-security-policy.com/#directive
   -->
 
-    <% if (isLocal) { %>
+    <!-- <% if (isLocal) { %>
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self' https: localhost:* data:; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';"
@@ -73,11 +73,11 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self' https: quickwait-angular.herokuapp.com:* data:; script-src 'unsafe-inline' 'unsafe-eval' https: quickwait-angular.herokuapp.com:*; connect-src https: quickwait-angular.herokuapp.com:* ws://quickwait-angular.herokuapp.com:*; style-src 'unsafe-inline' https:; object-src 'none';"
     />
-    <% } %>
-    <!-- <meta
+    <% } %> -->
+    <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self' https: localhost:* data:; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';"
-    /> -->
+    />
     <meta name="importmap-type" content="systemjs-importmap" />
     <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
     <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
@@ -210,7 +210,7 @@
       dev-libs
     ></import-map-overrides-full>
     <!-- Sentry.io -->
-    <script>
+    <!-- <script>
       Sentry.onLoad(() => {
         console.log(Sentry);
         Sentry.init({
@@ -220,6 +220,6 @@
           tracesSampleRate: 0.5,
         });
       });
-    </script>
+    </script> -->
   </body>
 </html>
